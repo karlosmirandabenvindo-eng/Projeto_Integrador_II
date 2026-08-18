@@ -1,4 +1,4 @@
-#  SmartSwine  Sistema Inteligente de Monitoramento do Bem-Estar Suíno *Um projeto educacional de Agricultura 4.0 voltado para escolas técnicas, unindo pecuária e tecnologia.*
+#  SmartSwine  Sistema Inteligente de Monitoramento do Bem-Estar Suíno *Um projeto educacional de Agricultura voltado para escolas técnicas, unindo pecuária e tecnologia.*
 
 ## O **SmartSwine**
 É um sistema inteligente desenvolvido para transformar o monitoramento da suinocultura em confinamento. Em vez de depender apenas da observação humana tradicional, o projeto utiliza **sensores de Internet das Coisas (IoT)** e **Inteligência Artificial** para monitorar o ambiente e o comportamento dos animais 24 horas por dia, garantindo mais conforto, saúde e produtividade. 
