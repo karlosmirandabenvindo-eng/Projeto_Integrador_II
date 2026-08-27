@@ -1,4 +1,5 @@
 ## FLUXOGRAMA DE FUNCIONAMENTO DO APP
+Cartão Trello Correspondente:https://trello.com/c/nIT9g2uE/6-teste-do-m%C3%B3dulo-rel%C3%A9-com-o-sistema-de-nebuliza%C3%A7%C3%A3o
 ---
 ```mermaid
 flowchart TD
