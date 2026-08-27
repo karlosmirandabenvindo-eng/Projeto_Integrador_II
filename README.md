@@ -1,29 +1,31 @@
-#  SmartSwine  Sistema Inteligente de Monitoramento do Bem-Estar Suíno *Um projeto educacional de Agricultura voltado para escolas técnicas, unindo pecuária e tecnologia.*
+# PigTech CTBJ 
+### *Sistema Escolar de Monitoramento e Manejo Inteligente da Pocilga do CTBJ*
+> **Projeto de Automação e Bem-Estar Animal**  
+> *Desenvolvido por alunos do Colégio Técnico de Bom Jesus (CTBJ/UFPI)*
 
-## O **SmartSwine**
-É um sistema inteligente desenvolvido para transformar o monitoramento da suinocultura em confinamento. Em vez de depender apenas da observação humana tradicional, o projeto utiliza **sensores de Internet das Coisas (IoT)** e **Inteligência Artificial** para monitorar o ambiente e o comportamento dos animais 24 horas por dia, garantindo mais conforto, saúde e produtividade. 
+---
 
-## Público-Alvo e Contexto Educacional
-Este projeto foi desenhado especificamente para ser implementado e estudado em **escolas técnicas** (integrando cursos de Agropecuária, Informática, Eletrônica e Automação):
+##  Sobre o Projetinho (PigTech CTBJ)
+O **PigTech CTBJ** nasceu da necessidade de modernizar a nossa rotina na pocilga do **Colégio Técnico de Bom Jesus**. Quem estuda aqui sabe que o calor de Bom Jesus não é brincadeira! Garantir o conforto térmico e a saúde dos porcos exige atenção constante. 
 
-* **Ensino Multidisciplinar:** Conecta a biologia e o manejo animal com a programação, eletrônica e análise de dados.
+Para ajudar nossos técnicos no manejo diário e dar um suporte de alta tecnologia, criamos um sistema prático usando sensores baratinhos de **Internet das Coisas (IoT)** e automação simples. O foco é dar uma "mãozinha" pros técnicos, alertando quando a pocilga estiver quente demais ou quando o ar estiver abafado, permitindo que a gente cuide dos animais com mais precisão.
 
-* **Aprendizagem Prática (Mão na Massa):** Ideal para Trabalhos de Conclusão de Curso (TCC) ou feiras de ciências tecnológicas.
+---
 
-* **Preparação para o Mercado:** Insere o estudante na realidade da **Agricultura 4.0**, cada vez mais exigente em termos de automação e sustentabilidade.
+##  Contexto no Colégio Técnico de Bom Jesus
+Este projeto une a vivência prática do campo com a tecnologia do ensino técnico:
 
- ##  Objetivos
-* **Conforto Térmico e Ambiental:** Garantir condições ideais de temperatura, umidade e qualidade do ar para o lote. 
+*  **Apoio ao Manejo Técnico:** Nossos técnicos já realizam o manejo eventual e os cuidados diários obrigatórios. O sistema não substitui o trabalho deles, mas serve como um **"alarme inteligente"** para interrupções ou emergências (ex: pico de calor extremo).
+*  **Integração de Cursos:** Une o conhecimento dos alunos de **Agropecuária** (bem-estar, manejo, nutrição) com **Informática/Eletrônica** (montagem de circuitos, programação de microcontroladores e envio de alertas).
+*  **Protótipo de Baixo Custo:** Pensado para a realidade da nossa escola, utilizando placas acessíveis (como Arduino e ESP32) e sensores que podem ser mantidos pelos próprios estudantes.
 
-* **Detecção Precoce:** Identificar sinais de estresse ou doenças antes do surgimento de sintomas clínicos, analisando padrões de som (tosse/vocalização) e movimentação.  
+---
 
-* **Gestão Eficiente:** Reduzir o desperdício de energia com climatização automatizada e otimizar o uso da mão de obra na granja-escola.
+##  Objetivos do PigTech
+-  **Combater o Estresse Térmico:** Controlar os níveis de calor dentro da pocilga do CTBJ, acionando aspersores ou ventiladores automaticamente.
+-  **Avisar o Técnico no Momento Certo:** Enviar mensagens de alerta para o celular do técnico responsável quando algum parâmetro fugir do ideal (como falta de água ou amônia alta).
+-  **Gerar Dados de Pesquisa:** Registrar o histórico de temperatura e umidade da pocilga para ser usado em aulas práticas, relatórios e feiras de ciências da escola.
+-  **Melhorar a Produtividade e Saúde:** Garantir que o ganho de peso dos porcos seja otimizado pela manutenção de um ambiente confortável.
 
- ## Como Funciona?
- **O fluxo do sistema é dividido em três etapas principais:** ``` [ 1. Coleta de Dados ] ➔ [ 2. Processamento Inteligente ] ➔ [ 3. Alerta e Ação ]``` 
- 
- 1. **Coleta:** Sensores IoT espalhados pelo barracão capturam temperatura, umidade e gases (como amônia). Câmeras e microfones registram o comportamento e os sons dos suínos.
- 
- 2. **Processamento:** Os dados são enviados para um microcontrolador (ex: ESP32) ou nuvem, onde softwares analisam se há anomalias (ex: animais amontoados por frio ou barulhos atípicos de tosse).
- 
- 3. **Alerta:** O sistema envia notificações automáticas (via painel web ou aplicativo) para que o tratador ou aluno tome uma providência imediata.
+---
+
