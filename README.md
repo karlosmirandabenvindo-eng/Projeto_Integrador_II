@@ -69,4 +69,16 @@ Este projeto une a vivência prática do campo com a tecnologia do ensino técni
 - [ ] Apresentar os resultados na Feira de Ciências e na Semana Acadêmica do CTBJ.
 
 ---
+## 🛠️ Guia de Instalação e Execução
+
+### Pré-requisitos
+* Placa **ESP32 DevKit v1**
+* Sensor **DHT22** + Módulo **Relé 5V** + Sensor de Nível Boia
+* **Arduino IDE** instalada com suporte ao ESP32 e bibliotecas `DHT sensor library` e `HTTPClient`
+
+### Passo a Passo
+1. Clone este repositório:
+   ```bash
+   git clone [https://github.com/seu-usuario/pigtech-ctbj.git](https://github.com/seu-usuario/pigtech-ctbj.git)
+---
 Colégio Técnico de Bom Jesus (CTBJ) - Ensino Prático e Inovação no Campo! 
