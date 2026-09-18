@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PigTech CTBJ - Dashboard da Pocilga</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        header h1 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+        }
+        header p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #2ecc71;
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #3498db;
+        }
+        .card.alert {
+            border-top-color: #e74c3c;
+        }
+        .card h3 {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .card .value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .card .status-text {
+            font-size: 0.75rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .status-ok { color: #2ecc71; }
+        .status-warn { color: #e74c3c; }
+
+        .control-panel {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .control-panel h2 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            flex: 1;
+        }
+        .btn-on { background-color: #e74c3c; color: white; }
+        .btn-off { background-color: #95a5a6; color: white; }
+        .btn:hover { opacity: 0.9; }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #bdc3c7;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🐷 PigTech CTBJ</h1>
+        <p>Colégio Técnico de Bom Jesus - UFPI</p>
+        <span class="status-badge" id="wifi-status">🟢 Wi-Fi Conectado</span>
+    </header>
+
+    <main class="dashboard-grid">
+        <!-- Card Temperatura -->
+        <div class="card" id="card-temp">
+            <h3>🌡️ Temperatura</h3>
+            <div class="value"><span id="val-temp">--</span> °C</div>
+            <div class="status-text" id="st-temp">Lendo dados...</div>
+        </div>
+
+        <!-- Card Umidade -->
+        <div class="card">
+            <h3>💧 Umidade Ar</h3>
+            <div class="value"><span id="val-umid">--</span> %</div>
+            <div class="status-text status-ok" id="st-umid">Normal</div>
+        </div>
+
+        <!-- Card Gases (Amônia) -->
+        <div class="card">
+            <h3>☣️ Gás Amônia</h3>
+            <div class="value"><span id="val-gas">--</span> <small style="font-size: 0.9rem;">PPM</small></div>
+            <div class="status-text status-ok" id="st-gas">Seguro</div>
+        </div>
+
+        <!-- Card Nível d'Água -->
+        <div class="card" id="card-agua">
+            <h3>🚰 Nível d'Água</h3>
+            <div class="value" id="val-agua">--</div>
+            <div class="status-text" id="st-agua">Verificando...</div>
+        </div>
+    </main>
+
+    <section class="control-panel">
+        <h2>⚙️ Controle do Sistema de Climatização</h2>
+        <div class="btn-group">
+            <button class="btn btn-on" onclick="controlarClimatizacao('LIGAR')">Ligar Nebulizador</button>
+            <button class="btn btn-off" onclick="controlarClimatizacao('DESLIGAR')">Desligar</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>Última atualização: <span id="hora-atual">--:--:--</span></p>
+        <p>PigTech CTBJ &copy; 2026 - Manejo e Tecnologia no Campo</p>
+    </footer>
+
+    <script>
+        // Função para atualizar a hora no rodapé
+        function atualizarHorario() {
+            const agora = new Date();
+            document.getElementById('hora-atual').innerText = agora.toLocaleTimeString('pt-BR');
+        }
+
+        // Função para buscar dados da API do ESP32 (Simulado ou Real via JSON)
+        async function buscarDadosPocilga() {
+            try {
+                // Em produção no ESP32, altere para o endpoint real ex: fetch('/api/dados')
+                // Aqui estamos fazendo uma leitura simulada para exibição visual
+                const dados = {
+                    temperatura: (26 + Math.random() * 4).toFixed(1),
+                    umidade: (45 + Math.random() * 10).toFixed(0),
+                    amonia: (12 + Math.random() * 5).toFixed(1),
+                    aguaOk: true
+                };
+
+                // Atualizando leituras na tela
+                document.getElementById('val-temp').innerText = dados.temperatura;
+                document.getElementById('val-umid').innerText = dados.umidade;
+                document.getElementById('val-gas').innerText = dados.amonia;
+
+                // Lógica visual da Temperatura
+                const cardTemp = document.getElementById('card-temp');
+                const stTemp = document.getElementById('st-temp');
+                if (dados.temperatura >= 28.0) {
+                    cardTemp.classList.add('alert');
+                    stTemp.innerText = '⚠️ ALERTA: Calor Elevado!';
+                    stTemp.className = 'status-text status-warn';
+                } else {
+                    cardTemp.classList.remove('alert');
+                    stTemp.innerText = '🟢 Confortável';
+                    stTemp.className = 'status-text status-ok';
+                }
+
+                // Lógica do Nível d'Água
+                const valAgua = document.getElementById('val-agua');
+                const stAgua = document.getElementById('st-agua');
+                if (dados.aguaOk) {
+                    valAgua.innerText = 'OK';
+                    valAgua.style.color = '#2ecc71';
+                    stAgua.innerText = '🟢 Reservatório Cheio';
+                    stAgua.className = 'status-text status-ok';
+                } else {
+                    valAgua.innerText = 'BAIXO';
+                    valAgua.style.color = '#e74c3c';
+                    stAgua.innerText = '⚠️ ALERTA: Encher Caixa!';
+                    stAgua.className = 'status-text status-warn';
+                }
+
+                atualizarHorario();
+            } catch (erro) {
+                console.error("Erro ao buscar dados do ESP32:", erro);
+            }
+        }
+
+        // Função de envio de comando manual para o relé
+        function controlarClimatizacao(acao) {
+            alert('Comando enviado para a pocilga: ' + acao + ' climatização.');
+            // Exemplo de integração real: fetch('/controlar?acao=' + acao);
+        }
+
+        // Atualiza os dados a cada 5 segundos
+        setInterval(buscarDadosPocilga, 5000);
+        buscarDadosPocilga();
+    </script>
+</body>
+</html>
